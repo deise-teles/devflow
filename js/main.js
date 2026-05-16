@@ -3,7 +3,8 @@ import {
   addTask,
   deleteTask,
   toggleTask,
-  editTask
+  editTask,
+  updateTaskStatus
 } from "./modules/tasks.js";
 
 import { renderTasks } from "./ui/render.js";
@@ -116,6 +117,58 @@ filterPriority.addEventListener("change", updateUI);
 themeToggle.addEventListener("click", () => {
 
   document.body.classList.toggle("light-mode");
+
+});
+document.addEventListener("dragstart", (event) => {
+
+  if (event.target.classList.contains("kanban-card")) {
+
+    event.target.classList.add("dragging");
+
+  }
+
+});
+
+document.addEventListener("dragend", (event) => {
+
+  if (event.target.classList.contains("kanban-card")) {
+
+    event.target.classList.remove("dragging");
+
+  }
+
+});
+
+const kanbanColumns =
+  document.querySelectorAll(".kanban-tasks");
+
+kanbanColumns.forEach(column => {
+
+  column.addEventListener("dragover", (event) => {
+
+    event.preventDefault();
+
+    const draggingCard =
+      document.querySelector(".dragging");
+
+    column.appendChild(draggingCard);
+
+  });
+
+  column.addEventListener("drop", () => {
+
+    const draggingCard =
+      document.querySelector(".dragging");
+
+    const id = Number(draggingCard.dataset.id);
+
+    const status = column.dataset.status;
+
+    updateTaskStatus(id, status);
+
+    saveTasks(tasks);
+
+  });
 
 });
 

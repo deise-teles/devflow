@@ -1,5 +1,13 @@
 export function renderTasks(tasks) {
 
+  renderTaskList(tasks);
+
+  renderKanban(tasks);
+
+}
+
+function renderTaskList(tasks) {
+
   const tasksList = document.querySelector(".tasks-list");
 
   tasksList.innerHTML = "";
@@ -66,6 +74,42 @@ export function renderTasks(tasks) {
     `;
 
     tasksList.appendChild(taskElement);
+
+  });
+
+}
+
+function renderKanban(tasks) {
+
+  const columns = document.querySelectorAll(".kanban-tasks");
+
+  columns.forEach(column => {
+    column.innerHTML = "";
+  });
+
+  tasks.forEach(task => {
+
+    const column = document.querySelector(
+      `[data-status="${task.status}"]`
+    );
+
+    const card = document.createElement("div");
+
+    card.classList.add("kanban-card");
+
+    card.setAttribute("draggable", true);
+
+    card.dataset.id = task.id;
+
+    card.innerHTML = `
+      <h3>${task.title}</h3>
+
+      <span class="priority ${task.priority.toLowerCase()}">
+        ${task.priority}
+      </span>
+    `;
+
+    column.appendChild(card);
 
   });
 

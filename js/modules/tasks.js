@@ -8,7 +8,8 @@ export function addTask(title, priority, date, category) {
     priority,
     date,
     category,
-    completed: false
+    completed: false,
+    status: "todo"
   };
 
   tasks.push(newTask);
@@ -42,6 +43,16 @@ export function editTask(id, newTitle) {
 
   if (task) {
     task.title = newTitle;
+  }
+
+}
+
+export function updateTaskStatus(id, status) {
+
+  const task = tasks.find(task => task.id === id);
+
+  if (task) {
+    task.status = status;
   }
 
 }
