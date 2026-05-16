@@ -1,11 +1,13 @@
 export let tasks = [];
 
-export function addTask(title, priority) {
+export function addTask(title, priority, date, category) {
 
   const newTask = {
     id: Date.now(),
     title,
     priority,
+    date,
+    category,
     completed: false
   };
 
@@ -30,6 +32,16 @@ export function toggleTask(id) {
 
   if (task) {
     task.completed = !task.completed;
+  }
+
+}
+
+export function editTask(id, newTitle) {
+
+  const task = tasks.find(task => task.id === id);
+
+  if (task) {
+    task.title = newTitle;
   }
 
 }

@@ -30,13 +30,29 @@ export function renderTasks(tasks) {
 
         <h3>${task.title}</h3>
 
-        <span class="priority ${task.priority.toLowerCase()}">
-          ${task.priority}
-        </span>
+        <div class="task-meta">
+
+          <span class="priority ${task.priority.toLowerCase()}">
+            ${task.priority}
+          </span>
+
+          <span class="task-category">
+            ${task.category || "General"}
+          </span>
+
+          <span class="task-date">
+            ${task.date || "No date"}
+          </span>
+
+        </div>
 
       </div>
 
       <div class="task-actions">
+
+        <button class="edit-btn" data-id="${task.id}">
+          ✏
+        </button>
 
         <button class="complete-btn" data-id="${task.id}">
           ✓

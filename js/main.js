@@ -2,7 +2,8 @@ import {
   tasks,
   addTask,
   deleteTask,
-  toggleTask
+  toggleTask,
+  editTask
 } from "./modules/tasks.js";
 
 import { renderTasks } from "./ui/render.js";
@@ -50,9 +51,13 @@ form.addEventListener("submit", (event) => {
 
   const priority = document.querySelector("#task-priority").value;
 
-  addTask(title, priority);
+  const date = document.querySelector("#task-date").value;
 
-  showToast();
+  const category = document.querySelector("#task-category").value;
+
+  addTask(title, priority, date, category);
+
+  showToast("Task created");
 
   updateUI();
 
@@ -64,11 +69,13 @@ form.addEventListener("submit", (event) => {
 
 document.addEventListener("click", (event) => {
 
+  const id = Number(event.target.dataset.id);
+
   if (event.target.classList.contains("delete-btn")) {
 
-    const id = Number(event.target.dataset.id);
-
     deleteTask(id);
+
+    showToast("Task deleted");
 
     updateUI();
 
@@ -76,11 +83,27 @@ document.addEventListener("click", (event) => {
 
   if (event.target.classList.contains("complete-btn")) {
 
-    const id = Number(event.target.dataset.id);
-
     toggleTask(id);
 
+    showToast("Task updated");
+
     updateUI();
+
+  }
+
+  if (event.target.classList.contains("edit-btn")) {
+
+    const newTitle = prompt("Edit task:");
+
+    if (newTitle) {
+
+      editTask(id, newTitle);
+
+      showToast("Task edited");
+
+      updateUI();
+
+    }
 
   }
 
@@ -130,15 +153,25 @@ function updateCards() {
 
   const pendingTasks = tasks.filter(task => !task.completed);
 
+  const progress =
+    tasks.length === 0
+      ? 0
+      : Math.round((completedTasks.length / tasks.length) * 100);
+
   document.querySelector("#completed-count").textContent =
     completedTasks.length;
 
   document.querySelector("#pending-count").textContent =
     pendingTasks.length;
 
+  document.querySelector("#progress-count").textContent =
+    `${progress}%`;
+
 }
 
-function showToast() {
+function showToast(message) {
+
+  toast.textContent = message;
 
   toast.classList.remove("hidden");
 
