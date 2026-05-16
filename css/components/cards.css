@@ -173,3 +173,67 @@
 .completed h3 {
   text-decoration: line-through;
 }
+.tasks-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.tasks-controls input,
+.tasks-controls select {
+  background: var(--card-color);
+
+  border: none;
+
+  padding: 10px 14px;
+
+  border-radius: 10px;
+
+  color: var(--text-color);
+}
+
+#theme-toggle {
+  border: none;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 10px;
+
+  background: var(--primary-color);
+
+  cursor: pointer;
+
+  color: white;
+
+  font-size: 1rem;
+}
+
+.toast {
+  position: fixed;
+
+  right: 30px;
+  bottom: 30px;
+
+  background: var(--primary-color);
+
+  color: white;
+
+  padding: 15px 25px;
+
+  border-radius: 10px;
+
+  font-weight: bold;
+}
+
+.empty-state {
+  background: var(--card-color);
+
+  padding: 40px;
+
+  border-radius: var(--border-radius);
+
+  text-align: center;
+
+  color: var(--text-secondary);
+}

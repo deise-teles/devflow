@@ -1,4 +1,5 @@
 :root {
+
   --bg-color: #111827;
   --sidebar-color: #1f2937;
   --card-color: #1e293b;
@@ -9,4 +10,16 @@
   --text-secondary: #9ca3af;
 
   --border-radius: 16px;
+
+}
+
+.light-mode {
+
+  --bg-color: #f3f4f6;
+  --sidebar-color: #ffffff;
+  --card-color: #ffffff;
+
+  --text-color: #111827;
+  --text-secondary: #4b5563;
+
 }

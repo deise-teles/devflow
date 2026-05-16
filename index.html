@@ -63,7 +63,34 @@
       <section class="tasks-section">
 
   <div class="tasks-header">
-    <h2>Recent Tasks</h2>
+    <div class="tasks-header">
+
+  <h2>Recent Tasks</h2>
+
+  <div class="tasks-controls">
+
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Search task..."
+    >
+
+    <select id="filter-priority">
+
+      <option value="All">All</option>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+
+    </select>
+
+    <button id="theme-toggle">
+      🌙
+    </button>
+
+  </div>
+
+</div>
   </div>
 
   <div class="tasks-list"></div>
@@ -101,6 +128,9 @@
 
   </div>
 
+</div>
+<div class="toast hidden">
+  Task created successfully
 </div>
 
     </main>

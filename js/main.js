@@ -18,6 +18,14 @@ const addTaskBtn = document.querySelector(".add-task-btn");
 
 const form = document.querySelector("#task-form");
 
+const searchInput = document.querySelector("#search-input");
+
+const filterPriority = document.querySelector("#filter-priority");
+
+const themeToggle = document.querySelector("#theme-toggle");
+
+const toast = document.querySelector(".toast");
+
 tasks.push(...loadTasks());
 
 updateUI();
@@ -43,6 +51,8 @@ form.addEventListener("submit", (event) => {
   const priority = document.querySelector("#task-priority").value;
 
   addTask(title, priority);
+
+  showToast();
 
   updateUI();
 
@@ -76,9 +86,37 @@ document.addEventListener("click", (event) => {
 
 });
 
+searchInput.addEventListener("input", updateUI);
+
+filterPriority.addEventListener("change", updateUI);
+
+themeToggle.addEventListener("click", () => {
+
+  document.body.classList.toggle("light-mode");
+
+});
+
 function updateUI() {
 
-  renderTasks(tasks);
+  let filteredTasks = [...tasks];
+
+  const search = searchInput.value.toLowerCase();
+
+  const priority = filterPriority.value;
+
+  filteredTasks = filteredTasks.filter(task =>
+    task.title.toLowerCase().includes(search)
+  );
+
+  if (priority !== "All") {
+
+    filteredTasks = filteredTasks.filter(task =>
+      task.priority === priority
+    );
+
+  }
+
+  renderTasks(filteredTasks);
 
   saveTasks(tasks);
 
@@ -97,5 +135,15 @@ function updateCards() {
 
   document.querySelector("#pending-count").textContent =
     pendingTasks.length;
+
+}
+
+function showToast() {
+
+  toast.classList.remove("hidden");
+
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 2000);
 
 }

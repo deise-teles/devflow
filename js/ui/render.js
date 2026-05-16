@@ -4,6 +4,17 @@ export function renderTasks(tasks) {
 
   tasksList.innerHTML = "";
 
+  if (tasks.length === 0) {
+
+    tasksList.innerHTML = `
+      <div class="empty-state">
+        No tasks found
+      </div>
+    `;
+
+    return;
+  }
+
   tasks.forEach(task => {
 
     const taskElement = document.createElement("div");
