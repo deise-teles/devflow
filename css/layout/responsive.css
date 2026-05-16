@@ -1,0 +1,17 @@
+@media (max-width: 900px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .dashboard {
+    padding: 20px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+}

@@ -1,0 +1,12 @@
+:root {
+  --bg-color: #111827;
+  --sidebar-color: #1f2937;
+  --card-color: #1e293b;
+
+  --primary-color: #8b5cf6;
+
+  --text-color: #f9fafb;
+  --text-secondary: #9ca3af;
+
+  --border-radius: 16px;
+}
